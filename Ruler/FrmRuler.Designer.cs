@@ -56,7 +56,7 @@
             // 
             this.tsmEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUnit});
-            this.tsmEdit.Name = "contextMenuStrip1";
+            this.tsmEdit.Name = "tsmEdit";
             this.tsmEdit.Size = new System.Drawing.Size(100, 26);
             this.tsmEdit.Text = "Edit";
             // 
@@ -73,14 +73,14 @@
             // tsmi_pixel
             // 
             this.tsmi_pixel.Name = "tsmi_pixel";
-            this.tsmi_pixel.Size = new System.Drawing.Size(224, 22);
+            this.tsmi_pixel.Size = new System.Drawing.Size(151, 22);
             this.tsmi_pixel.Text = "Pixel";
             this.tsmi_pixel.Click += new System.EventHandler(this.tsmi_pixel_Click);
             // 
             // tsmi_pixel2
             // 
             this.tsmi_pixel2.Name = "tsmi_pixel2";
-            this.tsmi_pixel2.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_pixel2.Size = new System.Drawing.Size(151, 22);
             this.tsmi_pixel2.Text = "Pixel (scaled)";
             this.tsmi_pixel2.Click += new System.EventHandler(this.tsmi_pixel2_Click);
             // 
@@ -89,7 +89,7 @@
             this.tsmi_count.Checked = true;
             this.tsmi_count.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsmi_count.Name = "tsmi_count";
-            this.tsmi_count.Size = new System.Drawing.Size(152, 22);
+            this.tsmi_count.Size = new System.Drawing.Size(151, 22);
             this.tsmi_count.Text = "Graduation";
             this.tsmi_count.Click += new System.EventHandler(this.tsmi_count_Click);
             // 
@@ -102,7 +102,7 @@
             this.Controls.Add(this.Canvas);
             this.DoubleBuffered = true;
             this.Name = "FrmRuler";
-            this.Opacity = 0.7D;
+            this.Opacity = 0.01D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

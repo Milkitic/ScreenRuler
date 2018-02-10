@@ -29,7 +29,10 @@ namespace ScreenRuler
         bool isRotating = false;
 
         Unit unit;
-        Style style = new Style(StyleKind.White);
+        Style style = new Style(StyleKind.Black);
+
+        PngFormGenerator w32;
+        Form1 fm = new Form1();
 
         int width = 600, height = 60; // 控制recMain的变量
         int left, top;
@@ -38,7 +41,7 @@ namespace ScreenRuler
         float linear_degree = 0;
         float linear_eachWidth = 5;
 
-        #region 控制窗体移动相关
+        #region WinAPI
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
         [DllImport("user32.dll")]
@@ -47,6 +50,7 @@ namespace ScreenRuler
         public const int WM_SYSCOMMAND = 0x0112;
         public const int SC_MOVE = 0xF010;
         public const int HTCAPTION = 0x0002;
+
         #endregion
 
         public FrmRuler()
@@ -127,12 +131,20 @@ namespace ScreenRuler
 
             LinearRuler();
 
-            Canvas.Image = bitmap;
+            //Canvas.Image = bitmap; //todo
             this.Region = new Region(gPath);  // 去边缘
+
+            w32.SetBitmap(new Bitmap(bitmap));
+            fm.Left = Left + left - 6;
+            fm.Top = Top + left - 6;
+            fm.Width = width + 10;
         }
 
         private void LinearRuler()
         {
+            var color = style.GetBack();
+            graphic.FillRectangle(new SolidBrush(Color.FromArgb((int)(255 * 0.7), color.R, color.G, color.B)), recMain.Left, recMain.Top, recMain.Width - 1, recMain.Height - 1);
+
             float line = 0;
             int margin = 10;
 
@@ -184,14 +196,17 @@ namespace ScreenRuler
                 graphic.DrawLine(new Pen(style.GetFore(), lineWidth), x, top, x, top + line_height);
                 line++;
             }
-            graphic.DrawRectangle(new Pen(style.GetFormBorder(), 3), recMain.Left, recMain.Top, recMain.Width-1, recMain.Height-1);
+            graphic.DrawRectangle(new Pen(style.GetFormBorder(), 3), recMain.Left, recMain.Top, recMain.Width - 1, recMain.Height - 1);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            w32 = new PngFormGenerator(fm);
             PreInit();
+            //fm.Show();
+            //w32.SetBitmap();
+            fm.Show();
         }
-
         private void Form1_Move(object sender, EventArgs e)
         {
             DrawRuler();
